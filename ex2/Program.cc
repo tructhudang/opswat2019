@@ -29,12 +29,13 @@ void Program::getUserInput()
 void Program::start()
 {
 	Waiter* waiter = new Waiter();
+	Invoker* invoker = new Invoker(waiter);
 	while (true)
 	{
 		getUserInput();
-		Invoker invoker(waiter);
-		invoker.request(userInput);
+		invoker->request(userInput);
 	}
+	delete invoker;
 	delete waiter;
 }
 

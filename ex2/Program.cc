@@ -6,21 +6,19 @@
  */
 
 #include "Program.hh"
+#include "Invoker/Waiter.hh"
 #include <iostream>
+#include "Invoker/Invoker.hh"
 
 using namespace std;
 
 Program::Program()
 {
 	userInput = "";
-	factory = new FinderFactory();
 }
 
 Program::~Program()
-{
-	if (factory)
-		delete factory;
-}
+{}
 
 void Program::getUserInput()
 {
@@ -30,12 +28,13 @@ void Program::getUserInput()
 
 void Program::start()
 {
+	Waiter* waiter = new Waiter();
 	while (true)
 	{
 		getUserInput();
-		FileFinder* finder = factory->createFinder(userInput);
-		if (finder)
-			finder->find();
+		Invoker invoker(waiter);
+		invoker.request(userInput);
 	}
+	delete waiter;
 }
 

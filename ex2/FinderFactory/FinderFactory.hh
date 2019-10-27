@@ -11,6 +11,8 @@
 #include "../Finder/FileFinder.hh"
 using namespace std;
 
+enum INPUT_TYPE {NETWORK, SYSTEM, NONE};
+
 class FinderFactory
 {
 public:

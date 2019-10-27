@@ -20,5 +20,3 @@ void ConsoleWriter::write()
 {
 	cout << "Found 100 files over network" << endl;
 }
-
-
